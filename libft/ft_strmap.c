@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eebersol <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/11 18:17:00 by eebersol          #+#    #+#             */
-/*   Updated: 2016/01/11 18:17:53 by eebersol         ###   ########.fr       */
+/*   Created: 2015/12/04 15:25:19 by eebersol          #+#    #+#             */
+/*   Updated: 2015/12/15 15:11:59 by eebersol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <string.h>
-# include <stdlib.h>
+char	*ft_strmap(char const *s, char (*f) (char))
+{
+	size_t	i;
+	char	*result;
+
+	if (s == NULL || f == NULL)
+		return (NULL);
+	if (!(result = (char*)malloc(sizeof(*result) * (ft_strlen(s) + 1))))
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		result[i] = f(s[i]);
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
+}
